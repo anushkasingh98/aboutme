@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Kathalyst — AI-Powered Legacy Modernization Platform",
+    "slug": "kathalyst-platform",
+    "date": "2024-11-01",
+    "tags": ["ai","legacy","cobol","platform","kathalyst"],
+    "excerpt": "The platform I built to help enterprises understand, document, and incrementally modernize their legacy codebases using AI.",
+    "url": "https://kathalyst.ai",
+    "status": "active",
+    "file": "projects/kathalyst-platform.md"
+  },
+  {
+    "title": "TaalGen — Generative Kathak Rhythm Patterns",
+    "slug": "taal-gen",
+    "date": "2025-01-10",
+    "tags": ["kathak","generative-art","music","creative-coding"],
+    "excerpt": "An experimental project that uses algorithmic composition to generate traditional Kathak rhythm patterns (bols) and visualize them as geometric art.",
+    "url": "https://github.com/anushkasingh/taal-gen",
+    "status": "active",
+    "file": "projects/taal-gen.md"
+  }
+]

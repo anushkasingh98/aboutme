@@ -1,0 +1,54 @@
+:root {
+  /* Colors — PostHog-inspired warm playful palette */
+  --color-bg: #FFF8F0;
+  --color-text: #3D2B1F;
+  --color-accent: #C73E3A;
+  --color-accent-hover: #A83230;
+  --color-coral: #D4796A;
+  --color-coral-hover: #C06454;
+  --color-muted: #7A6B5D;
+  --color-border: #E8DDD0;
+  --color-card-bg: #FFFFFF;
+  --color-card-bg-alt: #FFF3E6;
+  --color-dark: #3D2B1F;
+  --color-dark-muted: #5C4A3A;
+
+  /* Typography — Space Mono + Space Grotesk */
+  --font-mono: 'Space Mono', 'Courier New', monospace;
+  --font-sans: 'Space Grotesk', 'Segoe UI', Roboto, sans-serif;
+  --font-size-base: 1.063rem;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.75rem;
+  --font-size-4xl: 3.5rem;
+  --font-size-hero: 4.5rem;
+  --line-height-body: 1.7;
+  --line-height-heading: 1.15;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-section: 7rem;
+
+  /* Layout */
+  --max-width: 1140px;
+  --max-width-narrow: 740px;
+  --border-radius: 8px;
+  --border-radius-pill: 100px;
+  --border-sketchy: 2px dashed var(--color-border);
+  --border-sketchy-dark: 2px dashed var(--color-text);
+  --border-solid: 2px solid var(--color-border);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}

@@ -1,0 +1,207 @@
+/* === TABLET (max-width: 1024px) === */
+@media (max-width: 1024px) {
+  :root {
+    --font-size-hero: 3.25rem;
+    --font-size-4xl: 2.5rem;
+    --font-size-3xl: 2rem;
+    --space-section: 5rem;
+  }
+
+  .card-grid {
+    gap: var(--space-md);
+  }
+
+  .services-grid {
+    gap: var(--space-md);
+  }
+
+  .beliefs-grid {
+    gap: var(--space-md);
+  }
+
+  .about-hero {
+    gap: var(--space-xl);
+  }
+
+  .dance-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer__nav {
+    gap: var(--space-xl);
+  }
+}
+
+/* === MOBILE (max-width: 768px) === */
+@media (max-width: 768px) {
+  :root {
+    --font-size-hero: 2.5rem;
+    --font-size-4xl: 2rem;
+    --font-size-3xl: 1.625rem;
+    --font-size-2xl: 1.375rem;
+    --space-section: 3.5rem;
+  }
+
+  .container,
+  .container--narrow {
+    padding: 0 var(--space-md);
+  }
+
+  /* Nav mobile */
+  .nav__links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-bg);
+    border-bottom: var(--border-sketchy);
+    padding: var(--space-md) var(--space-lg);
+    gap: var(--space-xs);
+    box-shadow: 0 8px 20px rgba(61, 43, 31, 0.08);
+  }
+
+  .nav__links.open {
+    display: flex;
+  }
+
+  .nav__toggle {
+    display: block;
+  }
+
+  .nav__link {
+    width: 100%;
+    text-align: left;
+    padding: 10px 16px;
+  }
+
+  /* Grids to single column */
+  .card-grid,
+  .services-grid,
+  .beliefs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .about-photo {
+    max-height: 350px;
+  }
+
+  .dance-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dance-hero__title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .hero__tagline {
+    font-size: var(--font-size-md);
+  }
+
+  .hero::before {
+    font-size: 3rem;
+  }
+
+  .hero::after {
+    display: none;
+  }
+
+  .featured__header {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .contact__email {
+    font-size: var(--font-size-lg);
+    padding: 6px 18px;
+  }
+
+  .page-404__code {
+    font-size: 6rem;
+  }
+
+  .page-404__code::before,
+  .page-404__code::after {
+    display: none;
+  }
+
+  .page-404::before,
+  .page-404::after {
+    display: none;
+  }
+
+  .page-404__options {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-lg);
+  }
+
+  .footer__nav {
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .shameless-cta h2 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .shameless-cta::before {
+    font-size: 4rem;
+  }
+
+  .contact::before {
+    display: none;
+  }
+
+  .dance-hero::before,
+  .dance-hero::after {
+    display: none;
+  }
+
+  .about-photo::after {
+    display: none;
+  }
+}
+
+/* === SMALL MOBILE (max-width: 480px) === */
+@media (max-width: 480px) {
+  :root {
+    --font-size-hero: 2rem;
+    --font-size-4xl: 1.625rem;
+    --space-section: 2.5rem;
+  }
+
+  .dance-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .contact__socials {
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+  }
+
+  .hero__eyebrow {
+    font-size: var(--font-size-xs);
+  }
+
+  .shameless-cta__btn {
+    padding: 12px 28px;
+    font-size: var(--font-size-sm);
+  }
+}

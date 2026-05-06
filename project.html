@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project — Anushka Singh</title>
+  <meta name="description" content="Project details by Anushka Singh.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">anushka</a>
+      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="services.html" class="nav__link">Services</a></li>
+        <li><a href="projects.html" class="nav__link">Projects</a></li>
+        <li><a href="blog.html" class="nav__link">Blog</a></li>
+        <li><a href="dance.html" class="nav__link">Dance</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <article class="post container--narrow">
+      <a href="projects.html" class="post__back">&larr; back to all projects</a>
+      <header class="post__header">
+        <time class="post__date" id="project-date"></time>
+        <h1 class="post__title" id="project-title">Loading...</h1>
+        <div class="post__tags" id="project-tags"></div>
+      </header>
+      <div class="post__content" id="project-content"></div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__brand-name">anushka singh</span>
+        <span class="footer__brand-quip">Making legacy code less scary and classical dance more accessible, one commit and one taal at a time.</span>
+      </div>
+      <nav class="footer__nav">
+        <div class="footer__col">
+          <h4>Pages</h4>
+          <ul class="footer__links">
+            <li><a href="services.html" class="footer__link">Services</a></li>
+            <li><a href="projects.html" class="footer__link">Projects</a></li>
+            <li><a href="blog.html" class="footer__link">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>More</h4>
+          <ul class="footer__links">
+            <li><a href="dance.html" class="footer__link">Dance</a></li>
+            <li><a href="about.html" class="footer__link">About</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Elsewhere</h4>
+          <ul class="footer__links">
+            <li><a href="https://linkedin.com/in/anushkasingh" class="footer__link" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://github.com/anushkasingh" class="footer__link" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://twitter.com/anushkasingh" class="footer__link" target="_blank" rel="noopener">Twitter</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2025 Anushka Singh. Built with caffeine and questionable decisions.</p>
+        <span class="footer__easter-egg" title="You found me!">// no hedgehogs were harmed in the making of this site</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="shared/js/site-config.js"></script>
+  <script src="shared/js/markdown-engine.js"></script>
+  <script src="shared/js/content-loader.js"></script>
+  <script src="shared/js/tag-filter.js"></script>
+  <script src="shared/js/router.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    Router.loadBySlug({
+      manifestUrl: 'content/projects-manifest.json',
+      contentBase: 'content/',
+      renderFn: (item, html) => {
+        document.title = item.title + ' — Anushka Singh';
+        document.getElementById('project-title').textContent = item.title;
+        document.getElementById('project-date').textContent = Router.formatDate(item.date);
+        document.getElementById('project-date').setAttribute('datetime', item.date);
+        document.getElementById('project-content').innerHTML = html;
+        if (item.tags) {
+          document.getElementById('project-tags').innerHTML = item.tags.map(t =>
+            '<span class="card__tag">' + t + '</span>'
+          ).join('');
+        }
+      },
+      notFoundFn: () => {
+        document.getElementById('project-title').textContent = 'Project Not Found';
+        document.getElementById('project-content').innerHTML = '<p>This project doesn\'t exist. Or it ran away. Either way, try <a href="projects.html">browsing all projects</a> instead.</p>';
+      }
+    });
+  </script>
+</body>
+</html>

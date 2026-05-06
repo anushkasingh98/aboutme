@@ -1,0 +1,18 @@
+[
+  {
+    "title": "What Kathak Taught Me About Writing Code",
+    "slug": "rhythm-and-code",
+    "date": "2025-02-20",
+    "tags": ["kathak","dance","engineering","creativity"],
+    "excerpt": "The discipline of daily riyaaz, the precision of taal, and the storytelling of abhinaya — turns out, classical dance and software engineering have more in common than you'd think.",
+    "file": "blog/rhythm-and-code.md"
+  },
+  {
+    "title": "Why COBOL Isn't Dead (And What That Means for AI)",
+    "slug": "why-cobol-isnt-dead",
+    "date": "2025-01-15",
+    "tags": ["legacy","cobol","ai","modernization"],
+    "excerpt": "95% of ATM transactions still run on COBOL. Instead of declaring it dead, maybe we should figure out what that means for the AI era.",
+    "file": "blog/why-cobol-isnt-dead.md"
+  }
+]

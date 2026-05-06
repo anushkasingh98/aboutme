@@ -1,0 +1,59 @@
+{
+  "name": "Anushka Singh",
+  "title": "AI Consultant · Legacy Modernization · Kathak Dancer",
+  "shortBio": "Founder of Kathalyst. I help enterprises modernize legacy systems with AI, and I perform Kathak classical dance — because range matters.",
+  "longBio": "I'm Anushka Singh — the founder of Kathalyst, where I help organizations untangle decades of legacy code and reimagine their tech stacks with AI. My consulting work spans COBOL modernization, AI strategy, and building products that actually ship. When I'm not debugging mainframes or advising startups, I'm a trained Kathak dancer, bringing the same discipline and precision to the stage that I bring to a codebase. I believe the best work happens at intersections — of art and engineering, of old and new, of tradition and innovation.",
+  "email": "anushka.singh098@gmail.com",
+  "location": "Boston, USA / Mumbai, India",
+  "socials": {
+    "linkedin": "https://linkedin.com/in/asingh27",
+    "github": "https://github.com/anushkasingh98",
+    "twitter": "https://twitter.com/anushka_singh98"
+  },
+  "company": {
+    "name": "Kathalyst",
+    "description": "AI consulting and legacy modernization",
+    "url": "https://kathalyst.ai"
+  },
+  "services": [
+    {
+      "id": "legacy-modernization",
+      "title": "Legacy Modernization",
+      "summary": "Transforming COBOL, mainframe, and legacy systems into modern, maintainable architectures.",
+      "description": "I help enterprises migrate from legacy systems — COBOL, mainframes, monoliths — to modern cloud-native architectures. This isn't about ripping and replacing; it's about understanding decades of business logic and carefully re-engineering it for the future. I use AI-assisted code analysis to map dependencies, identify risks, and build migration roadmaps that don't break production.",
+      "icon": "terminal"
+    },
+    {
+      "id": "ai-strategy",
+      "title": "AI Strategy & Implementation",
+      "summary": "Practical AI strategy that goes beyond the buzzwords — from proof of concept to production.",
+      "description": "I work with teams to identify where AI actually adds value (and where it doesn't), build proof-of-concepts, and take them to production. No vaporware, no magic. Just clear-eyed strategy, solid engineering, and measurable outcomes. I specialize in LLM integration, AI-assisted development workflows, and building AI products that users actually want.",
+      "icon": "brain"
+    },
+    {
+      "id": "product-consulting",
+      "title": "Product & Technical Consulting",
+      "summary": "From architecture reviews to go-to-market — I help startups and enterprises build better products.",
+      "description": "Whether you're a startup figuring out your MVP or an enterprise launching a new product line, I bring a blend of technical depth and product thinking. I do architecture reviews, technical due diligence, product strategy, and hands-on prototyping. I've shipped products across fintech, healthcare, and developer tools.",
+      "icon": "rocket"
+    },
+    {
+      "id": "kathak-performance",
+      "title": "Kathak Performance & Collaboration",
+      "summary": "Classical Kathak dance performances, collaborations, and the occasional tech-meets-art experiment.",
+      "description": "I'm a trained Kathak dancer with years of practice in this North Indian classical dance form. I perform at cultural events, collaborate with musicians and visual artists, and occasionally explore the intersection of technology and traditional art. If you're looking for a performance, a collaboration, or a conversation about how rhythm and code aren't that different — let's talk.",
+      "icon": "music"
+    }
+  ],
+  "dance": {
+    "style": "Kathak",
+    "description": "Kathak is one of the eight major forms of Indian classical dance. Originating from Northern India, it combines intricate footwork, expressive storytelling, and rhythmic precision. The word 'Kathak' comes from 'katha' — meaning story. Every performance is a conversation between rhythm, emotion, and narrative.",
+    "training": "Trained under renowned gurus in the Lucknow gharana tradition, I've been practicing Kathak for over 15 years. The discipline of daily riyaaz (practice) mirrors the discipline of writing clean code — both demand patience, precision, and an obsessive attention to detail.",
+    "highlights": [
+      "Solo performances at national cultural festivals",
+      "Collaborative pieces blending classical Kathak with contemporary music",
+      "Workshops on rhythm and movement for tech communities",
+      "Exploring generative art inspired by Kathak patterns"
+    ]
+  }
+}

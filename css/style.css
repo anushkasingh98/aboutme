@@ -1295,12 +1295,34 @@ h4 { font-size: var(--font-size-xl); }
   font-size: var(--font-size-sm);
   color: var(--color-muted);
   line-height: 1.7;
-  margin: 0;
+  margin: 0 0 var(--space-sm);
 }
 
-.timeline__card p em {
+.timeline__card p:last-child {
+  margin-bottom: 0;
+}
+
+.timeline__card em {
   font-style: italic;
   color: var(--color-coral);
+}
+
+.timeline__card strong {
+  color: var(--color-text);
+}
+
+.timeline__card a {
+  color: var(--color-coral);
+  border-bottom: 1px dashed var(--color-coral);
+}
+
+.timeline__loading {
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+  padding: var(--space-lg) 0;
+  text-align: center;
 }
 
 .timeline__item--origin .timeline__marker {

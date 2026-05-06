@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journey — Anushka Singh</title>
+  <meta name="description" content="The entrepreneurship journey behind Kathalyst — milestones, missteps, and pivots, in reverse chronological order.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">anushka</a>
+      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="services.html" class="nav__link">Services</a></li>
+        <li><a href="projects.html" class="nav__link">Projects</a></li>
+        <li><a href="journey.html" class="nav__link nav__link--active">Journey</a></li>
+        <li><a href="blog.html" class="nav__link">Blog</a></li>
+        <li><a href="dance.html" class="nav__link">Dance</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero container">
+      <span class="hero__eyebrow">// the entrepreneurship arc</span>
+      <h1 class="hero__title">The Journey <span class="wave">~</span></h1>
+      <p class="hero__tagline" id="journey-intro">Loading the story&hellip;</p>
+    </section>
+
+    <hr class="divider container">
+
+    <section class="section container">
+      <ol class="timeline" id="journey-timeline" aria-label="Entrepreneurship journey timeline" aria-busy="true">
+        <li class="timeline__loading">// loading journey from content/journey.md ...</li>
+      </ol>
+    </section>
+
+    <section class="contact">
+      <div class="container">
+        <h2>Want to be part of a future entry?</h2>
+        <p>If you've got a tangled legacy system, an AI experiment that needs a strategist, or a wild collaboration in mind &mdash; the next milestone on this timeline could have your name on it.</p>
+        <a href="mailto:anushka.singh098@gmail.com" class="contact__email">anushka.singh098@gmail.com</a>
+        <ul class="contact__socials">
+          <li><a href="https://linkedin.com/in/anushkasingh" class="contact__social" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/anushkasingh" class="contact__social" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://twitter.com/anushkasingh" class="contact__social" target="_blank" rel="noopener">Twitter</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__brand-name">anushka singh</span>
+        <span class="footer__brand-quip">Making legacy code less scary and classical dance more accessible, one commit and one taal at a time.</span>
+      </div>
+      <nav class="footer__nav">
+        <div class="footer__col">
+          <h4>Pages</h4>
+          <ul class="footer__links">
+            <li><a href="services.html" class="footer__link">Services</a></li>
+            <li><a href="projects.html" class="footer__link">Projects</a></li>
+            <li><a href="journey.html" class="footer__link">Journey</a></li>
+            <li><a href="blog.html" class="footer__link">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>More</h4>
+          <ul class="footer__links">
+            <li><a href="dance.html" class="footer__link">Dance</a></li>
+            <li><a href="about.html" class="footer__link">About</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Elsewhere</h4>
+          <ul class="footer__links">
+            <li><a href="https://linkedin.com/in/anushkasingh" class="footer__link" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://github.com/anushkasingh" class="footer__link" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://twitter.com/anushkasingh" class="footer__link" target="_blank" rel="noopener">Twitter</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2026 Anushka Singh. Built with caffeine and questionable decisions.</p>
+        <span class="footer__easter-egg" title="You found me!">// no hedgehogs were harmed in the making of this site</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (async () => {
+      const timeline = document.getElementById('journey-timeline');
+      const introEl = document.getElementById('journey-intro');
+
+      try {
+        const res = await fetch('content/journey.md', { cache: 'no-cache' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const raw = await res.text();
+
+        const { intro, entries } = parseJourney(raw);
+
+        // Intro: take the first paragraph after the H1, ignore HTML comments.
+        if (intro) {
+          introEl.innerHTML = renderInline(intro);
+        } else {
+          introEl.textContent = '';
+        }
+
+        if (!entries.length) {
+          timeline.innerHTML = '<li class="timeline__loading">// no entries yet — add some to content/journey.md</li>';
+          timeline.removeAttribute('aria-busy');
+          return;
+        }
+
+        // Sort newest first.
+        entries.sort((a, b) => b.dateKey.localeCompare(a.dateKey));
+
+        timeline.innerHTML = entries.map((e, i) => {
+          const isOrigin = i === entries.length - 1;
+          const cls = 'timeline__item' + (isOrigin ? ' timeline__item--origin' : '');
+          return `
+            <li class="${cls}">
+              <div class="timeline__marker" aria-hidden="true"></div>
+              <div class="timeline__date">
+                <span class="timeline__year">${escapeHtml(e.year)}</span>
+                <span class="timeline__month">${escapeHtml(e.month)}</span>
+              </div>
+              <div class="timeline__card">
+                ${e.tag ? `<span class="timeline__tag">// ${escapeHtml(e.tag)}</span>` : ''}
+                <h3 class="timeline__title">${escapeHtml(e.title)}</h3>
+                ${renderMarkdown(e.body)}
+              </div>
+            </li>
+          `;
+        }).join('');
+        timeline.removeAttribute('aria-busy');
+      } catch (err) {
+        console.error('Failed to load journey:', err);
+        timeline.innerHTML = '<li class="timeline__loading">// could not load content/journey.md (' + escapeHtml(err.message) + ')</li>';
+        timeline.removeAttribute('aria-busy');
+      }
+    })();
+
+    /**
+     * Parse the journey markdown file.
+     * Format:
+     *   # Heading and intro paragraph(s)
+     *   ---
+     *   date: YYYY-MM
+     *   tag: short label
+     *   title: one-line title
+     *   ---
+     *   body markdown for this entry...
+     *   (repeat per entry)
+     */
+    function parseJourney(raw) {
+      // Strip HTML comments so they don't end up in the intro.
+      const cleaned = raw.replace(/<!--[\s\S]*?-->/g, '').trim();
+
+      // Split on lines that are exactly "---".
+      const parts = cleaned.split(/^\s*---\s*$/m);
+
+      // Pull intro: parts[0] is everything before the first ---.
+      // Strip the leading H1 and use the next non-empty paragraph as the tagline.
+      let intro = '';
+      if (parts.length > 0) {
+        const head = parts[0].replace(/^#\s+.*$/m, '').trim();
+        const firstPara = head.split(/\n\s*\n/).map(s => s.trim()).filter(Boolean)[0];
+        intro = firstPara || '';
+      }
+
+      const entries = [];
+      // Pairs of (meta, body) start at index 1.
+      for (let i = 1; i + 1 < parts.length; i += 2) {
+        const meta = parseMeta(parts[i]);
+        const body = parts[i + 1].trim();
+        if (!meta.date || !meta.title) continue;
+
+        const { year, month } = formatDate(meta.date);
+        entries.push({
+          dateKey: meta.date,
+          year,
+          month,
+          tag: meta.tag || '',
+          title: meta.title,
+          body
+        });
+      }
+
+      return { intro, entries };
+    }
+
+    function parseMeta(block) {
+      const meta = {};
+      block.split('\n').forEach(line => {
+        const idx = line.indexOf(':');
+        if (idx === -1) return;
+        const key = line.slice(0, idx).trim().toLowerCase();
+        const value = line.slice(idx + 1).trim();
+        if (key) meta[key] = value;
+      });
+      return meta;
+    }
+
+    function formatDate(raw) {
+      // Accept "YYYY-MM" or "YYYY-MM-DD" or just "YYYY".
+      const m = String(raw).match(/^(\d{4})(?:-(\d{1,2}))?/);
+      if (!m) return { year: String(raw), month: '~' };
+      const year = m[1];
+      const monthNum = m[2] ? parseInt(m[2], 10) : null;
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const month = monthNum && monthNum >= 1 && monthNum <= 12 ? months[monthNum - 1] : '~';
+      return { year, month };
+    }
+
+    function renderMarkdown(md) {
+      if (typeof marked !== 'undefined') {
+        return marked.parse(md);
+      }
+      // Fallback: wrap in <p> and apply basic inline styling.
+      return '<p>' + renderInline(md) + '</p>';
+    }
+
+    function renderInline(text) {
+      return escapeHtml(text)
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*([^*]+)\*/g, '<em>$1</em>');
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+  </script>
+</body>
+</html>

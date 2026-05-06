@@ -176,6 +176,49 @@
   .about-photo::after {
     display: none;
   }
+
+  /* Timeline mobile: collapse to single column */
+  .timeline::before {
+    left: 12px;
+  }
+
+  .timeline__item {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+    padding-left: 36px;
+  }
+
+  .timeline__date {
+    text-align: left;
+    padding-right: 0;
+    padding-top: 0;
+    margin-bottom: var(--space-xs);
+  }
+
+  .timeline__year {
+    display: inline-block;
+    font-size: var(--font-size-xl);
+    margin-right: var(--space-xs);
+  }
+
+  .timeline__month {
+    display: inline-block;
+    margin-top: 0;
+  }
+
+  .timeline__marker {
+    left: 12px;
+    top: 8px;
+  }
+
+  .timeline__card {
+    margin-left: 0;
+  }
+
+  .timeline__card::before,
+  .timeline__card::after {
+    display: none;
+  }
 }
 
 /* === SMALL MOBILE (max-width: 480px) === */

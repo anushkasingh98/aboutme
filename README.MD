@@ -7,7 +7,7 @@ Personal website for Anushka Singh — founder of Kathalyst, AI consultant, lega
 1. **Clone the repo**
    ```bash
    git clone <repo-url>
-   cd anushkasingh
+   cd aboutme
    ```
 
 2. **Serve locally** (needed for fetch requests to work)
@@ -22,91 +22,44 @@ Personal website for Anushka Singh — founder of Kathalyst, AI consultant, lega
    php -S localhost:8000
    ```
 
-3. **Open the site** — navigate to `http://localhost:8000/design-2/`
+3. **Open the site** — navigate to `http://localhost:8000/`
 
 ## Project Structure
 
 ```
-├── content/                    # Shared content
-│   ├── site.json              # Site-wide info, services, social links
-│   ├── blog-manifest.json     # Blog post index
-│   ├── projects-manifest.json # Project index
-│   ├── blog/                  # Blog posts (markdown)
-│   └── projects/              # Project writeups (markdown)
-├── shared/js/                 # Shared JavaScript modules
-│   ├── site-config.js         # Loads site.json
-│   ├── markdown-engine.js     # Front matter parser + marked.js wrapper
-│   ├── content-loader.js      # Loads manifest, renders cards with templateFn
-│   ├── tag-filter.js          # Tag filtering UI
-│   └── router.js              # Query-param routing for single pages
-├── design-2/                  # Active design (PostHog-Inspired Playful)
-│   ├── index.html
-│   ├── services.html
-│   ├── projects.html
-│   ├── project.html
-│   ├── blog.html
-│   ├── post.html
-│   ├── dance.html
-│   ├── about.html
-│   ├── 404.html
-│   ├── css/
-│   │   ├── variables.css      # Design tokens (colors, fonts, spacing)
-│   │   ├── style.css          # Main styles
-│   │   └── responsive.css     # Media queries
-│   └── js/
-│       └── main.js            # Interactions + card templates
-├── archive/                   # Unused design variations (1, 3, 4, 5)
-├── generate-manifest.sh       # Rebuild manifests from .md files
+├── index.html                  # Home
+├── services.html               # Services
+├── projects.html               # Projects listing
+├── project.html                # Single project page (query-param routed)
+├── blog.html                   # Blog listing
+├── post.html                   # Single blog post (query-param routed)
+├── journey.html                # Journey timeline
+├── dance.html                  # Kathak / dance
+├── about.html                  # About
+├── 404.html
+├── css/
+│   ├── variables.css           # Design tokens (colors, fonts, spacing)
+│   ├── style.css               # Main styles
+│   └── responsive.css          # Media queries
+├── js/
+│   └── main.js                 # Interactions + card templates
+├── content/                    # Markdown-driven content
+│   ├── site.json               # Site-wide info, services, social links
+│   ├── blog-manifest.json      # Blog post index
+│   ├── projects-manifest.json  # Project index
+│   ├── blog/                   # Blog posts (markdown)
+│   └── projects/               # Project writeups (markdown)
+├── shared/js/                  # Shared JavaScript modules
+│   ├── site-config.js          # Loads site.json
+│   ├── markdown-engine.js      # Front matter parser + marked.js wrapper
+│   ├── content-loader.js       # Loads manifest, renders cards with templateFn
+│   ├── tag-filter.js           # Tag filtering UI
+│   └── router.js               # Query-param routing for single pages
+├── assets/                     # Images and static assets
+├── generate-manifest.sh        # Rebuild manifests from .md files
+├── CONTENT.md                  # Guide for editing site content
 └── README.md
 ```
-
-## Adding Content
-
-### New Blog Post
-
-1. Create a markdown file in `content/blog/`:
-   ```markdown
-   ---
-   title: Your Post Title
-   slug: your-post-slug
-   date: 2025-03-15
-   tags: [tag1, tag2, tag3]
-   excerpt: A brief description of the post.
-   ---
-
-   # Your Post Title
-
-   Your content here...
-   ```
-
-2. Rebuild the manifest:
-   ```bash
-   ./generate-manifest.sh
-   ```
-
-### New Project
-
-1. Create a markdown file in `content/projects/`:
-   ```markdown
-   ---
-   title: Project Name
-   slug: project-slug
-   date: 2025-03-15
-   tags: [tag1, tag2]
-   excerpt: Brief project description.
-   url: https://project-url.com
-   status: active
-   ---
-
-   # Project Name
-
-   Project details here...
-   ```
-
-2. Rebuild the manifest:
-   ```bash
-   ./generate-manifest.sh
-   ```
 
 ## How It Works
 

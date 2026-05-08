@@ -103,6 +103,18 @@
     font-size: var(--font-size-md);
   }
 
+  .hero {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .hero__headshot {
+    width: 200px;
+    height: 200px;
+    justify-self: center;
+    order: -1;
+  }
+
   .hero::before {
     font-size: 3rem;
   }

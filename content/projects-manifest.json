@@ -7,11 +7,7 @@
     "excerpt": "The platform I built to help enterprises understand, document, and incrementally modernize their legacy codebases using AI.",
     "url": "https://kathalyst.ai",
     "status": "active",
-    "links": [
-      { "label": "Live site", "url": "https://kathalyst.ai", "type": "site" },
-      { "label": "Documentation", "url": "https://docs.kathalyst.ai", "type": "docs" },
-      { "label": "GitHub", "url": "https://github.com/kathalyst", "type": "github" }
-    ],
+    "links": [{ "label": "Live site", "url": "https://kathalyst.ai", "type": "site" }, { "label": "Documentation", "url": "https://docs.kathalyst.ai", "type": "docs" }, { "label": "GitHub", "url": "https://github.com/kathalyst", "type": "github" }],
     "file": "projects/kathalyst-platform.md"
   },
   {
@@ -22,10 +18,7 @@
     "excerpt": "An experimental project that uses algorithmic composition to generate traditional Kathak rhythm patterns (bols) and visualize them as geometric art.",
     "url": "https://github.com/anushkasingh/taal-gen",
     "status": "active",
-    "links": [
-      { "label": "GitHub", "url": "https://github.com/anushkasingh/taal-gen", "type": "github" },
-      { "label": "Live demo", "url": "https://taal-gen.vercel.app", "type": "demo" }
-    ],
+    "links": [{ "label": "GitHub", "url": "https://github.com/anushkasingh/taal-gen", "type": "github" }, { "label": "Live demo", "url": "https://taal-gen.vercel.app", "type": "demo" }],
     "file": "projects/taal-gen.md"
   }
 ]

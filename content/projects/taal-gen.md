@@ -6,6 +6,7 @@ tags: [kathak, generative-art, music, creative-coding]
 excerpt: An experimental project that uses algorithmic composition to generate traditional Kathak rhythm patterns (bols) and visualize them as geometric art.
 url: https://github.com/anushkasingh/taal-gen
 status: active
+links: [GitHub|https://github.com/anushkasingh/taal-gen|github, Live demo|https://taal-gen.vercel.app|demo]
 ---
 
 TaalGen is a creative coding project that sits squarely at the intersection of my two worlds: Kathak dance and software engineering. It algorithmically generates traditional Kathak rhythm patterns (called **bols**) and renders them as interactive geometric visualizations.

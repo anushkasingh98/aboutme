@@ -6,8 +6,6 @@ tags: [legacy, cobol, ai, modernization]
 excerpt: 95% of ATM transactions still run on COBOL. Instead of declaring it dead, maybe we should figure out what that means for the AI era.
 ---
 
-# Why COBOL Isn't Dead (And What That Means for AI)
-
 Every few months, someone writes a thinkpiece declaring COBOL dead. And every few months, the 95% of ATM transactions that still run on COBOL politely disagree.
 
 ## The Numbers Don't Lie

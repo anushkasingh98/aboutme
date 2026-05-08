@@ -8,8 +8,6 @@ url: https://kathalyst.ai
 status: active
 ---
 
-# Kathalyst — AI-Powered Legacy Modernization Platform
-
 Kathalyst is the company I founded to tackle one of enterprise tech's most stubborn problems: legacy modernization. The platform uses AI to help organizations understand, document, and incrementally modernize codebases that have been running (and accumulating complexity) for decades.
 
 ## The Problem

@@ -8,8 +8,6 @@ url: https://github.com/anushkasingh/taal-gen
 status: active
 ---
 
-# TaalGen — Generative Kathak Rhythm Patterns
-
 TaalGen is a creative coding project that sits squarely at the intersection of my two worlds: Kathak dance and software engineering. It algorithmically generates traditional Kathak rhythm patterns (called **bols**) and renders them as interactive geometric visualizations.
 
 ## Concept

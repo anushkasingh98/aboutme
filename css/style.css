@@ -313,7 +313,7 @@ h4 { font-size: var(--font-size-xl); }
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: var(--space-xl);
+  gap: var(--space-lg);
 }
 
 .hero__content {

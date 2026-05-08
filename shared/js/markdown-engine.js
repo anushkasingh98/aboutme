@@ -44,13 +44,19 @@ const MarkdownEngine = (() => {
   /**
    * Fetch a markdown file, parse front matter, and render to HTML.
    */
+  // The post/project pages render the title from the manifest, so a
+  // leading `# Heading` in the markdown body would render twice.
+  function stripLeadingH1(content) {
+    return content.replace(/^\s*#[ \t]+[^\n]*\n+/, '');
+  }
+
   async function loadAndRender(url) {
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const raw = await res.text();
       const { meta, content } = parseFrontMatter(raw);
-      const html = render(content);
+      const html = render(stripLeadingH1(content));
       return { meta, html };
     } catch (e) {
       console.error('Failed to load markdown:', url, e);

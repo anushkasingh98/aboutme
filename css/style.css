@@ -330,6 +330,7 @@ h4 { font-size: var(--font-size-xl); }
   transform: rotate(2deg);
   transition: border-radius 1.2s ease-in-out, transform var(--transition-bounce);
   justify-self: end;
+  margin-right: 16px;
 }
 
 .hero__headshot:hover {

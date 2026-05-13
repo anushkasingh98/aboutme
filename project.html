@@ -34,6 +34,10 @@
   <main>
     <article class="post container--narrow">
       <a href="projects.html" class="post__back">&larr; back to all projects</a>
+      <section class="post__links" id="project-links" hidden aria-label="Project links">
+        <h2 class="post__links-title">Links</h2>
+        <ul class="post__links-list" id="project-links-list"></ul>
+      </section>
       <header class="post__header">
         <time class="post__date" id="project-date"></time>
         <h1 class="post__title" id="project-title">Loading...</h1>
@@ -104,6 +108,28 @@
           document.getElementById('project-tags').innerHTML = item.tags.map(t =>
             '<span class="card__tag">' + t + '</span>'
           ).join('');
+        }
+
+        const links = Array.isArray(item.links) && item.links.length
+          ? item.links
+          : (item.url ? [{ label: 'Visit project', url: item.url }] : []);
+        if (links.length) {
+          const section = document.getElementById('project-links');
+          const list = document.getElementById('project-links-list');
+          const escape = (s) => String(s).replace(/[&<>"']/g, (c) => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+          }[c]));
+          list.innerHTML = links.map(link => {
+            const url = escape(link.url || '');
+            const label = escape(link.label || link.url || 'Link');
+            const type = escape(link.type || '');
+            return '<li class="post__links-item">' +
+              '<a class="post__links-link" href="' + url + '" target="_blank" rel="noopener noreferrer"' +
+              (type ? ' data-link-type="' + type + '"' : '') + '>' +
+              label + ' <span class="post__links-arrow" aria-hidden="true">&#8599;</span>' +
+              '</a></li>';
+          }).join('');
+          section.hidden = false;
         }
       },
       notFoundFn: () => {

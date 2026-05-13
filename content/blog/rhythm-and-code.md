@@ -6,8 +6,6 @@ tags: [kathak, dance, engineering, creativity]
 excerpt: The discipline of daily riyaaz, the precision of taal, and the storytelling of abhinaya — turns out, classical dance and software engineering have more in common than you'd think.
 ---
 
-# What Kathak Taught Me About Writing Code
-
 People are often surprised when they learn I'm both a software engineer and a Kathak dancer. "Those are so different!" they say. They're wrong.
 
 ## Riyaaz and Refactoring

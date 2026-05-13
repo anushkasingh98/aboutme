@@ -6,9 +6,8 @@ tags: [ai, legacy, cobol, platform, kathalyst]
 excerpt: The platform I built to help enterprises understand, document, and incrementally modernize their legacy codebases using AI.
 url: https://kathalyst.ai
 status: active
+links: [Live site|https://kathalyst.ai|site, Documentation|https://docs.kathalyst.ai|docs, GitHub|https://github.com/kathalyst|github]
 ---
-
-# Kathalyst — AI-Powered Legacy Modernization Platform
 
 Kathalyst is the company I founded to tackle one of enterprise tech's most stubborn problems: legacy modernization. The platform uses AI to help organizations understand, document, and incrementally modernize codebases that have been running (and accumulating complexity) for decades.
 

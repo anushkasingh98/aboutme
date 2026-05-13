@@ -911,6 +911,61 @@ h4 { font-size: var(--font-size-xl); }
   border-color: var(--color-coral);
 }
 
+.post__links {
+  margin-bottom: var(--space-xl);
+  padding: var(--space-md) var(--space-lg);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--border-radius);
+  background-color: var(--color-card-bg-alt);
+}
+
+.post__links-title {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.post__links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.post__links-item {
+  margin: 0;
+}
+
+.post__links-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  padding: 6px 14px;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--border-radius-pill);
+  background-color: var(--color-bg);
+  transition: all var(--transition-fast);
+}
+
+.post__links-link:hover {
+  color: var(--color-coral);
+  border-color: var(--color-coral);
+  border-style: solid;
+}
+
+.post__links-arrow {
+  font-size: 0.85em;
+  opacity: 0.7;
+}
+
 /* === DANCE PAGE === */
 .dance-hero {
   min-height: 55vh;
@@ -1020,6 +1075,74 @@ h4 { font-size: var(--font-size-xl); }
 
 .dance-gallery__item:nth-child(even):hover {
   transform: rotate(1deg) scale(1.02);
+}
+
+.dance-gallery__item--photo {
+  padding: 0;
+  overflow: hidden;
+}
+
+.dance-gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.dance-videos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.dance-videos__item {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background-color: var(--color-card-bg-alt);
+  border-radius: var(--border-radius);
+  border: var(--border-sketchy);
+  overflow: hidden;
+  transition: all var(--transition-bounce);
+}
+
+.dance-videos__item:hover {
+  transform: rotate(-0.5deg) scale(1.01);
+  border-color: var(--color-coral);
+  box-shadow: 4px 4px 0 var(--color-accent);
+}
+
+.dance-videos__embed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.dance-videos__item--placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+}
+
+.dance-videos__play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px dashed var(--color-coral);
+  color: var(--color-coral);
+  font-size: 1.25rem;
+  padding-left: 4px;
 }
 
 .dance-highlights {

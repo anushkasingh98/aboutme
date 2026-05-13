@@ -27,6 +27,10 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .dance-videos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .footer__nav {
     gap: var(--space-xl);
   }
@@ -93,6 +97,10 @@
 
   .dance-gallery {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dance-videos {
+    grid-template-columns: 1fr;
   }
 
   .dance-hero__title {

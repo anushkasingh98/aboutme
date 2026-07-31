@@ -8,6 +8,8 @@ const ContentLoader = (() => {
   let _filteredItems = [];
   let _templateFn = null;
   let _container = null;
+  let _activeTag = 'all';
+  let _searchQuery = '';
 
   /**
    * Initialize the content loader.
@@ -16,6 +18,7 @@ const ContentLoader = (() => {
    * @param {string} opts.containerSelector - CSS selector for the card container
    * @param {Function} opts.templateFn - (item) => HTML string for each card
    * @param {string} [opts.defaultTag] - Optional default tag filter
+   * @param {string} [opts.searchSelector] - CSS selector for a search input
    */
   async function init(opts) {
     _templateFn = opts.templateFn;
@@ -34,10 +37,9 @@ const ContentLoader = (() => {
       _filteredItems = [..._items];
 
       if (opts.defaultTag) {
-        filterByTag(opts.defaultTag);
-      } else {
-        renderItems();
+        _activeTag = opts.defaultTag;
       }
+      applyFilters();
 
       // Initialize tag filter if TagFilter is available
       if (typeof TagFilter !== 'undefined') {
@@ -47,6 +49,14 @@ const ContentLoader = (() => {
           onFilter: filterByTag,
           containerSelector: opts.tagContainerSelector || '.tag-filters'
         });
+      }
+
+      // Wire up search input if one was provided
+      if (opts.searchSelector) {
+        const input = document.querySelector(opts.searchSelector);
+        if (input) {
+          input.addEventListener('input', (e) => setSearch(e.target.value));
+        }
       }
     } catch (e) {
       console.error('Failed to load manifest:', e);
@@ -65,13 +75,32 @@ const ContentLoader = (() => {
   }
 
   function filterByTag(tag) {
-    if (!tag || tag === 'all') {
-      _filteredItems = [..._items];
-    } else {
-      _filteredItems = _items.filter(item =>
-        item.tags && item.tags.includes(tag)
-      );
-    }
+    _activeTag = tag || 'all';
+    applyFilters();
+  }
+
+  function setSearch(query) {
+    _searchQuery = (query || '').trim().toLowerCase();
+    applyFilters();
+  }
+
+  function matchesSearch(item) {
+    if (!_searchQuery) return true;
+    const haystack = [
+      item.title,
+      item.excerpt,
+      item.status,
+      ...(item.tags || [])
+    ].filter(Boolean).join(' ').toLowerCase();
+    return haystack.includes(_searchQuery);
+  }
+
+  function applyFilters() {
+    _filteredItems = _items.filter(item => {
+      const tagOk = !_activeTag || _activeTag === 'all'
+        || (item.tags && item.tags.includes(_activeTag));
+      return tagOk && matchesSearch(item);
+    });
     renderItems();
   }
 
@@ -92,5 +121,5 @@ const ContentLoader = (() => {
     return _filteredItems;
   }
 
-  return { init, filterByTag, getAllTags, getItems, getFilteredItems };
+  return { init, filterByTag, setSearch, getAllTags, getItems, getFilteredItems };
 })();

@@ -29,6 +29,7 @@ Personal website for Anushka Singh — founder of Kathalyst, AI consultant, lega
 ```
 ├── index.html                  # Home
 ├── services.html               # Services
+├── media.html                  # Media appearances & expertise
 ├── projects.html               # Projects listing
 ├── project.html                # Single project page (query-param routed)
 ├── blog.html                   # Blog listing

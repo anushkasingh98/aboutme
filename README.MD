@@ -66,8 +66,9 @@ Personal website for Anushka Singh — founder of Kathalyst, AI consultant, lega
 
 - **Markdown rendering** — uses [marked.js](https://marked.js.org/) via CDN, with a custom front-matter parser
 - **Routing** — single post/project pages use query parameters (`post.html?slug=my-post`)
+- **Substack cards** — `node add-substack.js <url> --tags a,b` pulls title, cover and description from Substack into a blog entry; its card opens the article in a new tab (see [CONTENT.md](CONTENT.md))
 - **Tag filtering** — `ContentLoader` + `TagFilter` handle filtering; the design provides its own card template function
-- **No build step** — pure HTML/CSS/JS, just serve and go
+- **No build step** — pure HTML/CSS/JS, just serve and go (the manifest and Substack helper scripts are run by hand when you add content; Node 18+ is only needed for `add-substack.js`)
 
 ## Technologies
 

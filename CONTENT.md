@@ -27,6 +27,8 @@ Three pages on this site are driven by markdown files:
 
 Blog and projects use **front matter** (a YAML-ish header at the top of each file) plus a manifest file (`*-manifest.json`) that the listing pages read. The manifest is regenerated from a script — you never edit it by hand.
 
+A blog entry can be either a **full post** written here, or a **Substack link-out card** that opens your Substack article in a new tab (see [Add a Substack article](#add-a-substack-article-link-out-card)).
+
 The journey page reads one markdown file directly, so there's no manifest step.
 
 ## Blog posts
@@ -45,9 +47,9 @@ The journey page reads one markdown file directly, so there's no manifest step.
    excerpt: A short, plain-text summary that shows up on the blog index card.
    ---
 
-   # What I Learned Debugging COBOL at 3am
-
-   Your post body here. **Markdown** is fully supported.
+   Your post body here. **Markdown** is fully supported. Don't start the body
+   with a `# Heading` — the title is rendered from front matter, and the
+   manifest script rejects files with a leading H1.
    ```
 
 3. Regenerate the manifest:
@@ -73,6 +75,24 @@ This creates `content/blog/<substack-slug>.md` (front matter only) and rebuilds 
 - **Overrides:** `--title "..."`, `--excerpt "..."`, `--image URL`, `--date YYYY-MM-DD` if you'd rather not use what Substack provides.
 - **Why a script and not live fetching?** Browsers can't read Substack pages from another site (CORS), so metadata is fetched once when you add the article. Needs Node 18+; works with custom Substack domains too.
 - Visiting `post.html?slug=<substack-slug>` redirects to the Substack article.
+- The cover image is loaded directly from Substack's servers. If it ever disappears, re-run the command to pick up the current image, or pass `--image` with one of your own (e.g. `assets/blog/foo.png`).
+- Substack files have front matter only (no body). To remove a card, delete its `.md` file in `content/blog/` and run `./generate-manifest.sh`.
+- Prefer not to use the script? Create the file by hand: set `source: substack`, `url:`, `image:` alongside the usual fields, leave the body empty, and rebuild the manifest.
+
+Example of the generated file:
+
+```markdown
+---
+title: Why Legacy Systems Aren't the Enemy
+slug: why-legacy-systems-arent-the-enemy
+date: 2026-10-30
+tags: [legacy, ai, cobol]
+excerpt: A one-line description from Substack.
+source: substack
+url: https://yourname.substack.com/p/why-legacy-systems-arent-the-enemy
+image: https://substackcdn.com/image/fetch/.../cover.png
+---
+```
 
 ### Edit an existing post
 
@@ -87,6 +107,9 @@ Just edit the file in `content/blog/`. If you change `title`, `date`, `tags`, or
 | `date`    | yes      | `YYYY-MM-DD`                   | Used for sorting (newest first) and display.    |
 | `tags`    | recommended | `[tag1, tag2, tag3]`        | Powers the tag filter on `blog.html`.           |
 | `excerpt` | recommended | one line of plain text      | Shown on the listing card. **No markdown — keep it plain.** |
+| `source`  | no       | `substack`                     | Marks a link-out card. Set automatically by `add-substack.js`. |
+| `url`     | with `source` | full https URL            | Where a Substack card links (opens in a new tab).   |
+| `image`   | no       | full https URL                 | Cover image on the card. Without it, a placeholder shows. Used by Substack cards. |
 
 ## Projects
 
@@ -310,6 +333,8 @@ Then visit `http://localhost:8000/` in your browser.
 ## Common gotchas
 
 - **"My new post doesn't show up on the blog page."** Did you run `./generate-manifest.sh`? The script must be re-run any time you add, rename, or change front matter on a blog/project file. Journey doesn't need this.
+- **"`add-substack.js` says the API lookup failed."** It falls back to the page's Open Graph tags automatically. If that fails too, check the URL (it must look like `.../p/<slug>`) and that the post is public; otherwise pass `--title`, `--excerpt`, `--image` and `--date` yourself.
+- **"My Substack card shows the wrong date or no image."** Re-run with `--date` / `--image`, or edit the front matter and run `./generate-manifest.sh`.
 - **"My image is broken."** Paths are relative to the site root, not the markdown file. Use `assets/blog/foo.png`, not `../assets/foo.png`.
 - **"My slug stopped working."** Slugs become URLs. If you rename a file or change the `slug` field, any link to the old slug 404s. Pick a slug at publish time and don't change it.
 - **"My excerpt has weird characters in the listing."** The excerpt is plain text — markdown formatting (`**bold**`, `[links]`, etc.) renders as literal characters. Keep it simple.

@@ -499,6 +499,17 @@ h4 { font-size: var(--font-size-xl); }
   right: 12px;
 }
 
+.card__image--photo::after {
+  content: none;
+}
+
+.card__image--photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .card__body {
   padding: var(--space-md) var(--space-lg);
 }

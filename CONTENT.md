@@ -58,6 +58,22 @@ The journey page reads one markdown file directly, so there's no manifest step.
 
 4. The post is now live at `blog.html` (in the listing) and at `post.html?slug=cobol-at-3am` (the full post page).
 
+### Add a Substack article (link-out card)
+
+Instead of writing a post here, you can list a Substack article. Its card shows the title, cover image and description pulled from Substack, carries a "Substack ↗" badge, and opens the original article in a **new tab**. The tags are yours.
+
+```bash
+node add-substack.js https://yourname.substack.com/p/your-article --tags ai,legacy,cobol
+```
+
+This creates `content/blog/<substack-slug>.md` (front matter only) and rebuilds the manifest. Then commit and push as usual.
+
+- **Custom tags:** `--tags a,b,c`. To change them later, edit the `tags: [...]` line in that file and run `./generate-manifest.sh`, or re-run the command with new `--tags`.
+- **Refreshing:** re-running with the same URL re-fetches title/image/description and keeps existing tags if you omit `--tags`.
+- **Overrides:** `--title "..."`, `--excerpt "..."`, `--image URL`, `--date YYYY-MM-DD` if you'd rather not use what Substack provides.
+- **Why a script and not live fetching?** Browsers can't read Substack pages from another site (CORS), so metadata is fetched once when you add the article. Needs Node 18+; works with custom Substack domains too.
+- Visiting `post.html?slug=<substack-slug>` redirects to the Substack article.
+
 ### Edit an existing post
 
 Just edit the file in `content/blog/`. If you change `title`, `date`, `tags`, or `excerpt`, run `./generate-manifest.sh` again so the listing card picks up the new metadata. If you only edited the body, no manifest rebuild is needed.

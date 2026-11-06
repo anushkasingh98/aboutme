@@ -57,6 +57,7 @@ Personal website for Anushka Singh — founder of Kathalyst, AI consultant, lega
 │   └── router.js               # Query-param routing for single pages
 ├── assets/                     # Images and static assets
 ├── generate-manifest.sh        # Rebuild manifests from .md files
+├── add-substack.js             # Add a Substack article as a link-out blog card
 ├── CONTENT.md                  # Guide for editing site content
 └── README.md
 ```

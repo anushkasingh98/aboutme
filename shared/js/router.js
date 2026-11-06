@@ -38,6 +38,12 @@ const Router = (() => {
         return;
       }
 
+      // Substack-linked posts have no local body: send visitors to the original.
+      if (item.source === 'substack' && item.url) {
+        window.location.replace(item.url);
+        return;
+      }
+
       const result = await MarkdownEngine.loadAndRender(opts.contentBase + item.file);
       if (result) {
         opts.renderFn(item, result.html);

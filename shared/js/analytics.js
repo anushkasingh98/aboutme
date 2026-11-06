@@ -1,20 +1,14 @@
 /**
- * Google Analytics 4
- * Set GA_MEASUREMENT_ID to your property's Measurement ID (looks like G-XXXXXXXXXX).
- * Until then, this file does nothing.
+ * Google Tag Manager
+ * Loads the GTM container on every page. Configure Google Analytics (GA4)
+ * and any other tags inside the GTM container, not here.
  */
-(function () {
-  var GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
-
-  if (!/^G-[A-Z0-9]+$/.test(GA_MEASUREMENT_ID) || GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') return;
-
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function () { window.dataLayer.push(arguments); };
-  window.gtag('js', new Date());
-  window.gtag('config', GA_MEASUREMENT_ID);
-
-  var s = document.createElement('script');
-  s.async = true;
-  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA_MEASUREMENT_ID);
-  document.head.appendChild(s);
-})();
+(function (w, d, s, l, i) {
+  w[l] = w[l] || [];
+  w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+  var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s);
+  j.async = true;
+  j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i;
+  f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-57DT5ZBX');

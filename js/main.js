@@ -63,6 +63,16 @@ function initScrollShadow() {
 }
 
 /**
+ * Optional card image: only rendered when the item has an `image` field
+ * (set via `image:` in the markdown front matter). No image, no placeholder.
+ */
+function cardImage(item) {
+  if (!item.image) return '';
+  const alt = (item.imageAlt || item.title || '').replace(/"/g, '&quot;');
+  return `<img class="card__image" src="${item.image}" alt="${alt}" loading="lazy">`;
+}
+
+/**
  * Template function for blog cards (used by ContentLoader).
  * Design 2: Sketchy borders, doodle corners, playful personality.
  */
@@ -71,7 +81,7 @@ function blogCardTemplate(item) {
   const tags = item.tags ? item.tags.map(t => `<span class="card__tag">${t}</span>`).join('') : '';
   return `
     <article class="card">
-      <div class="card__image">// blog visual goes here</div>
+      ${cardImage(item)}
       <div class="card__body">
         <time class="card__date" datetime="${item.date}">${date}</time>
         <h3 class="card__title"><a href="post.html?slug=${item.slug}">${item.title}</a></h3>
@@ -92,7 +102,7 @@ function projectCardTemplate(item) {
   const status = item.status ? `<span class="card__status">${item.status}</span>` : '';
   return `
     <article class="card">
-      <div class="card__image">// project visual goes here</div>
+      ${cardImage(item)}
       <div class="card__body">
         <time class="card__date" datetime="${item.date}">${date}</time>
         <h3 class="card__title"><a href="project.html?slug=${item.slug}">${item.title}</a></h3>

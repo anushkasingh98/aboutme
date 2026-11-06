@@ -476,27 +476,11 @@ h4 { font-size: var(--font-size-xl); }
 }
 
 .card__image {
+  display: block;
   width: 100%;
   height: 200px;
-  background-color: var(--color-card-bg-alt);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-muted);
-  font-family: var(--font-mono);
-  font-size: var(--font-size-sm);
+  object-fit: cover;
   border-bottom: var(--border-sketchy);
-  position: relative;
-}
-
-.card__image::after {
-  content: '// img placeholder';
-  font-family: var(--font-mono);
-  font-size: var(--font-size-xs);
-  color: var(--color-border);
-  position: absolute;
-  bottom: 8px;
-  right: 12px;
 }
 
 .card__body {

@@ -12,6 +12,8 @@
 #   - Projects go in content/projects/
 #   - Markdown bodies must NOT start with `# Heading` (the title is rendered
 #     from front matter; a leading H1 would duplicate it on the page).
+#   - Front matter may include an optional `image: assets/blog/foo.jpg`
+#     (and `imageAlt:`); cards render without a picture when it is omitted.
 #   - Project front matter may include a `links` array of pipe-delimited
 #     entries: links: [Live site|https://…|site, GitHub|https://…|github]
 #     Each entry is `label|url[|type]`.
@@ -59,7 +61,7 @@ generate_manifest() {
 
     # Read front matter
     local in_front_matter=false
-    local title="" slug="" date="" tags="" excerpt="" url="" status="" links=""
+    local title="" slug="" date="" tags="" excerpt="" url="" status="" links="" image="" imageAlt=""
 
     while IFS= read -r line; do
       if [ "$line" = "---" ]; then
@@ -81,6 +83,8 @@ generate_manifest() {
           date)   date="$value" ;;
           tags)   tags="$value" ;;
           excerpt) excerpt="$value" ;;
+          image)  image="$value" ;;
+          imageAlt) imageAlt="$value" ;;
           url)    url="$value" ;;
           status) status="$value" ;;
           links)  links="$value" ;;
@@ -121,6 +125,9 @@ generate_manifest() {
     json_tags=$(echo "$tags" | sed 's/\[//;s/\]//' | tr ',' '\n' | sed 's/^ *//;s/ *$//' | sed 's/.*/"&"/' | tr '\n' ',' | sed 's/,$//')
     printf '    "tags": [%s],\n' "$json_tags" >> "$output"
     printf '    "excerpt": "%s",\n' "$excerpt" >> "$output"
+
+    [ -n "$image" ] && printf '    "image": "%s",\n' "$image" >> "$output"
+    [ -n "$imageAlt" ] && printf '    "imageAlt": "%s",\n' "$imageAlt" >> "$output"
 
     if [ "$type" = "project" ]; then
       [ -n "$url" ] && printf '    "url": "%s",\n' "$url" >> "$output"

@@ -192,6 +192,15 @@ assets/
 
 (The folder doesn't have to exist beforehand — just create it when you need it.)
 
+### Card image (optional)
+
+Blog and project cards show no picture by default. To add one, put it in the front matter and re-run `./generate-manifest.sh`:
+
+```yaml
+image: assets/blog/cobol-at-3am-cover.jpg
+imageAlt: Mainframe terminal at 3am
+```
+
 ### In a blog post or project
 
 Use standard markdown image syntax. Paths are relative to the **site root**:

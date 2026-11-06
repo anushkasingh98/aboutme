@@ -22,30 +22,24 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Set up SSH
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
-        run: |
-          install -m 700 -d ~/.ssh
-          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
 
-      - name: Rsync to cPanel
+      - name: Mirror to cPanel over FTPS
         env:
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_PORT: ${{ secrets.SSH_PORT }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
-          rsync -az --delete \
-            -e "ssh -i ~/.ssh/deploy_key -p $SSH_PORT -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes" \
-            --exclude '.git' --exclude '.github' --exclude '.gitignore' \
-            --exclude '/README.MD' --exclude '/CONTENT.md' --exclude '/generate-manifest.sh' \
-            --exclude 'cgi-bin' --exclude '.well-known' --exclude '.htaccess' \
-            ./ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH"
-
-      - name: Clean up key
-        if: always()
-        run: rm -f ~/.ssh/deploy_key
+          lftp -u "$FTP_USER" "ftp://$FTP_HOST" <<'EOF'
+          set ftp:ssl-force true
+          set ftp:ssl-protect-data true
+          set ssl:verify-certificate yes
+          set net:max-retries 3
+          mirror -R --verbose --parallel=4 --delete \
+            --exclude-glob .git/ --exclude-glob .github/ --exclude-glob .gitignore \
+            --exclude-glob README.MD --exclude-glob CONTENT.md --exclude-glob generate-manifest.sh \
+            --exclude-glob cgi-bin/ --exclude-glob .well-known/ --exclude-glob .htaccess \
+            ./ /
+          bye
+          EOF

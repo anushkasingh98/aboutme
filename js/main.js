@@ -79,14 +79,23 @@ function cardImage(item) {
 function blogCardTemplate(item) {
   const date = Router.formatDate(item.date);
   const tags = item.tags ? item.tags.map(t => `<span class="card__tag">${t}</span>`).join('') : '';
+  // Substack articles open the original article in a new tab.
+  const external = item.source === 'substack' && item.url;
+  const href = external ? item.url : `post.html?slug=${item.slug}`;
+  const linkAttrs = external ? ' target="_blank" rel="noopener noreferrer"' : '';
+  const badge = external ? '<span class="card__status">Substack ↗</span>' : '';
+  const image = item.image
+    ? `<div class="card__image card__image--photo"><img src="${item.image}" alt="" loading="lazy" referrerpolicy="no-referrer"></div>`
+    : '<div class="card__image">// blog visual goes here</div>';
   return `
     <article class="card">
-      ${cardImage(item)}
+      ${image}
+
       <div class="card__body">
         <time class="card__date" datetime="${item.date}">${date}</time>
-        <h3 class="card__title"><a href="post.html?slug=${item.slug}">${item.title}</a></h3>
+        <h3 class="card__title"><a href="${href}"${linkAttrs}>${item.title}</a></h3>
         <p class="card__excerpt">${item.excerpt}</p>
-        <div class="card__tags">${tags}</div>
+        <div class="card__tags">${badge}${tags}</div>
       </div>
     </article>
   `;

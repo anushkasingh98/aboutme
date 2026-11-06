@@ -9,6 +9,8 @@
 # Requirements:
 #   - Markdown files must have YAML front matter with: title, slug, date, tags, excerpt
 #   - Blog posts go in content/blog/
+#     (Substack articles: use `node add-substack.js <url> --tags a,b` to create
+#      the file; it sets source/url/image front matter and has no body.)
 #   - Projects go in content/projects/
 #   - Markdown bodies must NOT start with `# Heading` (the title is rendered
 #     from front matter; a leading H1 would duplicate it on the page).
@@ -46,6 +48,11 @@ check_no_leading_h1() {
   ' "$file"
 }
 
+# Escape backslashes and double quotes so values are safe inside JSON strings.
+json_escape() {
+  printf '%s' "$1" | sed 's/\\/\\\\/g; s/"/\\"/g'
+}
+
 generate_manifest() {
   local dir="$1"
   local output="$2"
@@ -61,7 +68,8 @@ generate_manifest() {
 
     # Read front matter
     local in_front_matter=false
-    local title="" slug="" date="" tags="" excerpt="" url="" status="" links="" image="" imageAlt=""
+
+    local title="" slug="" date="" tags="" excerpt="" url="" status="" links="" source="" image=""
 
     while IFS= read -r line; do
       if [ "$line" = "---" ]; then
@@ -88,6 +96,8 @@ generate_manifest() {
           url)    url="$value" ;;
           status) status="$value" ;;
           links)  links="$value" ;;
+          source) source="$value" ;;
+          image)  image="$value" ;;
         esac
       fi
     done < "$file"
@@ -117,14 +127,21 @@ generate_manifest() {
 
     # Write JSON entry
     printf '  {\n' >> "$output"
-    printf '    "title": "%s",\n' "$title" >> "$output"
+    printf '    "title": "%s",\n' "$(json_escape "$title")" >> "$output"
     printf '    "slug": "%s",\n' "$slug" >> "$output"
     printf '    "date": "%s",\n' "$date" >> "$output"
     # Convert tags [a, b, c] to ["a", "b", "c"]
     local json_tags
-    json_tags=$(echo "$tags" | sed 's/\[//;s/\]//' | tr ',' '\n' | sed 's/^ *//;s/ *$//' | sed 's/.*/"&"/' | tr '\n' ',' | sed 's/,$//')
+    json_tags=$(echo "$tags" | sed 's/\[//;s/\]//' | tr ',' '\n' | sed 's/^ *//;s/ *$//' | sed '/^$/d' | sed 's/.*/"&"/' | tr '\n' ',' | sed 's/,$//')
     printf '    "tags": [%s],\n' "$json_tags" >> "$output"
-    printf '    "excerpt": "%s",\n' "$excerpt" >> "$output"
+    printf '    "excerpt": "%s",\n' "$(json_escape "$excerpt")" >> "$output"
+
+    # External (Substack) posts: card links out to `url`, `image` is the cover.
+    if [ "$type" = "blog" ]; then
+      [ -n "$source" ] && printf '    "source": "%s",\n' "$(json_escape "$source")" >> "$output"
+      [ -n "$url" ] && printf '    "url": "%s",\n' "$(json_escape "$url")" >> "$output"
+      [ -n "$image" ] && printf '    "image": "%s",\n' "$(json_escape "$image")" >> "$output"
+    fi
 
     [ -n "$image" ] && printf '    "image": "%s",\n' "$image" >> "$output"
     [ -n "$imageAlt" ] && printf '    "imageAlt": "%s",\n' "$imageAlt" >> "$output"

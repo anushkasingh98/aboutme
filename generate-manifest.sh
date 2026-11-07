@@ -69,7 +69,7 @@ generate_manifest() {
     # Read front matter
     local in_front_matter=false
 
-    local title="" slug="" date="" tags="" excerpt="" url="" status="" links="" source="" image=""
+    local title="" slug="" date="" tags="" excerpt="" url="" status="" links="" source="" image="" imageAlt=""
 
     while IFS= read -r line; do
       if [ "$line" = "---" ]; then

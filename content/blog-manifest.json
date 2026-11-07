@@ -1,5 +1,13 @@
 [
   {
+    "title": "I Built an Agent So I Never Miss a Reply Again",
+    "slug": "follow-up-agent",
+    "date": "2026-11-07",
+    "tags": ["ai","agents","productivity","automation","hackathon"],
+    "excerpt": "My chats are spread across iMessage, Slack and WhatsApp, and I kept forgetting who I owed a reply. So I built a follow-up agent that turns them into a clear Linear task list.",
+    "file": "blog/follow-up-agent.md"
+  },
+  {
     "title": "What Kathak Taught Me About Writing Code",
     "slug": "rhythm-and-code",
     "date": "2025-02-20",

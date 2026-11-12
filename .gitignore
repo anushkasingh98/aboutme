@@ -1,6 +1,7 @@
 # Dependency directories (essential for JS projects)
 node_modules/
 jspm_packages/
+.ftp_keys
 
 # Build artifacts and output
 dist/
